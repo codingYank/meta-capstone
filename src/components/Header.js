@@ -1,10 +1,19 @@
 import React from "react"
-import logo from "../assets/icons/Logo.svg"
+import food from "../assets/icons/restauranfood.jpg"
 
 const Header = () => {
   return (
     <header>
-      <img src={logo}></img>
+      <div className="header-info">
+        <h1>Little Lemon</h1>
+        <h3>Chicago</h3>
+        <p>
+          the user is taken to another screen and that this highlights section
+          is scrollable horizontally in order to see
+        </p>
+        <button>Reserve a Table</button>
+      </div>
+      <img src={food}></img>
     </header>
   )
 }

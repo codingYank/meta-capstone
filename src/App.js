@@ -7,10 +7,8 @@ import Nav from "./components/Nav"
 function App() {
   return (
     <>
-      <section className="heading">
-        <Header />
-        <Nav />
-      </section>
+      <Nav />
+      <Header />
       <Main />
       <Footer />
     </>
