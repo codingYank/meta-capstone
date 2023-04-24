@@ -1,5 +1,6 @@
 import React from "react"
 import food from "../assets/icons/restauranfood.jpg"
+import { Link } from "react-router-dom"
 
 const Header = () => {
   return (
@@ -11,7 +12,7 @@ const Header = () => {
           the user is taken to another screen and that this highlights section
           is scrollable horizontally in order to see
         </p>
-        <button>Reserve a Table</button>
+        <Link className="button">Reserve a Table</Link>
       </div>
       <img src={food}></img>
     </header>
