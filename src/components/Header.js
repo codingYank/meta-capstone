@@ -12,7 +12,9 @@ const Header = () => {
           the user is taken to another screen and that this highlights section
           is scrollable horizontally in order to see
         </p>
-        <Link className="button">Reserve a Table</Link>
+        <Link to={"/reservations"} className="button">
+          Reserve a Table
+        </Link>
       </div>
       <img src={food}></img>
     </header>
