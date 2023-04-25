@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react"
+import { render, screen, fireEvent } from "@testing-library/react"
 import App from "./App"
 import BookingForm from "./components/BookingForm"
 
@@ -8,7 +8,11 @@ test("renders the BookingForm heading", () => {
   expect(headingElement).toBeInTheDocument()
 })
 
-// test('update Times', () => {
-//   render(<App />)
-//   const updateTimesFunction = function
-// })
+test("Updates the time correctly", () => {
+  render(<BookingForm />)
+  const dateSelector = screen.getByLabelText(/Choose date/)
+  fireEvent.change(dateSelector, { target: { value: "2023-04-25" } })
+  const timeDropDown = screen.getByLabelText(/Choose time/)
+  fireEvent.change(timeDropDown, { target: { value: "17:00" } })
+  expect(timeDropDown.value).toEqual("17:00")
+})

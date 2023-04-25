@@ -1,12 +1,13 @@
-import { Formik, Form, Field } from "formik"
+import { Formik, Form, Field, ErrorMessage } from "formik"
 import React, { useState } from "react"
+import { booking } from "../schemas/YupBooking"
 
 const BookingForm = ({ times, submit }) => {
   const data = {
     date: "",
-    time: "17:00",
+    time: "",
     guests: 1,
-    occasion: "Birthday",
+    occasion: "Other",
   }
 
   const onSubmit = (e) => {
@@ -17,15 +18,20 @@ const BookingForm = ({ times, submit }) => {
   return (
     <>
       <h1>Book Now</h1>
-      <Formik initialValues={data} onSubmit={onSubmit}>
+      <Formik
+        initialValues={data}
+        onSubmit={onSubmit}
+        validationSchema={booking}
+      >
         <Form>
           <label htmlFor="res-date">Choose date</label>
           <Field type="date" id="res-date" name="date"></Field>
+          <ErrorMessage name="date" />
           <label htmlFor="res-time">Choose time</label>
           <Field id="res-time " name="time" component="select">
-            {times.map((time) => {
-              return <option key={time}>{time}</option>
-            })}
+            {times.map((time) => (
+              <option key={time}>{time}</option>
+            ))}
           </Field>
           <label htmlFor="guests">Number of guests</label>
           <Field
@@ -38,6 +44,7 @@ const BookingForm = ({ times, submit }) => {
           ></Field>
           <label htmlFor="occasion">Occasion</label>
           <Field id="occasion" component="select" name="occasion">
+            <option>Other</option>
             <option>Birthday</option>
             <option>Anniversary</option>
           </Field>
