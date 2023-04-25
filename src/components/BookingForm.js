@@ -1,18 +1,23 @@
 import { Formik, Form, Field } from "formik"
 import React, { useState } from "react"
 
-const BookingForm = ({ times }) => {
+const BookingForm = ({ times, submit }) => {
   const data = {
     date: "",
     time: "17:00",
     guests: 1,
     occasion: "Birthday",
   }
+
+  const onSubmit = (e) => {
+    console.log()
+    submit()
+  }
   console.log(times)
   return (
     <>
       <h1>Book Now</h1>
-      <Formik initialValues={data}>
+      <Formik initialValues={data} onSubmit={onSubmit}>
         <Form>
           <label htmlFor="res-date">Choose date</label>
           <Field type="date" id="res-date" name="date"></Field>

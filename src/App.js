@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useNavigate } from "react-router-dom"
 import "./App.css"
 import Footer from "./components/Footer"
 import HomePage from "./components/HomePage"
@@ -8,11 +8,25 @@ import Chicago from "./components/Chicago"
 import BookingPage from "./components/BookingPage"
 import Menu from "./components/Menu"
 import Login from "./components/Login"
-import { useReducer, useState } from "react"
+import { useEffect, useReducer, useState } from "react"
+import { fetchAPI, submitAPI } from "./Api"
+import Confirmed from "./components/Confirmed"
 
 function App() {
+  const navigate = useNavigate()
+  const submit = (data) => {
+    let success = submitAPI(data)
+    console.log(success)
+    if (success) {
+      navigate("/confirmed")
+    }
+  }
+
   const initializeTimes = () => {
-    return ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"]
+    let today = new Date()
+    console.log(fetchAPI(today))
+
+    return fetchAPI(today)
   }
 
   const availableTimes = {
@@ -34,10 +48,11 @@ function App() {
         <Route path="/about" element={<Chicago />}></Route>
         <Route
           path="/reservations"
-          element={<BookingPage times={initializeTimes()} />}
+          element={<BookingPage times={initializeTimes()} submit={submit} />}
         ></Route>
         <Route path="/order-online" element={<Menu />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/confirmed" element={<Confirmed />}></Route>
       </Routes>
       <Footer />
     </>
