@@ -16,8 +16,8 @@ const BookingForm = ({ times, submit }) => {
   }
   console.log(times)
   return (
-    <>
-      <h1>Book Now</h1>
+    <section className="form-container">
+      <h3>Book Now</h3>
       <Formik
         initialValues={data}
         onSubmit={onSubmit}
@@ -25,10 +25,10 @@ const BookingForm = ({ times, submit }) => {
       >
         <Form>
           <label htmlFor="res-date">Choose date</label>
-          <Field type="date" id="res-date" name="date"></Field>
-          <ErrorMessage name="date" />
-          <label htmlFor="res-time">Choose time</label>
-          <Field id="res-time " name="time" component="select">
+          <Field type="date" id="res-date" name="date" required></Field>
+          <ErrorMessage name="date" component="div" className="error-text" />
+          <label htmlFor="time">Choose time</label>
+          <Field id="time " name="time" component="select">
             {times.map((time) => (
               <option key={time}>{time}</option>
             ))}
@@ -48,10 +48,12 @@ const BookingForm = ({ times, submit }) => {
             <option>Birthday</option>
             <option>Anniversary</option>
           </Field>
-          <button type="submit">Make Your reservation</button>
+          <button className="button" type="submit">
+            Make Your reservation
+          </button>
         </Form>
       </Formik>
-    </>
+    </section>
   )
 }
 
