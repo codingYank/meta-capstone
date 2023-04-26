@@ -33,7 +33,6 @@ header img {
   height: 400px;
   border-radius: 16px;
   margin-top: 8rem;
-  /* position: absolute; */
 }
 
 .button {
@@ -139,6 +138,7 @@ form {
 .section-header {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -225,6 +225,7 @@ form {
   margin-top: 5rem;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 50px;
 }
 
@@ -240,4 +241,10 @@ form {
 .images .a {
   margin-left: 100px;
   margin-bottom: 5px;
+}
+
+@media (max-width: 570px ) {
+  header img {
+    display: none;
+  }
 }
